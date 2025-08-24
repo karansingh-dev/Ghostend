@@ -26,7 +26,7 @@ export const useCreateApiForm = () => {
     setValue,
     reset,
     formState: { errors },
-  } = useForm<ApiFormDataType>({
+  } = useForm({
     resolver: zodResolver(apiFormSchema),
     defaultValues: {
       defaultCount: 1,
