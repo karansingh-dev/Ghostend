@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ApiMethod {
+  GET
+  POST
+  PUT
+  DELETE
+  PATCH
+}
+
+model GhostApi {
+  id           String @id @default(uuid())
+  clerkUserId  String @map("clerk_user_id")
+  endPointName String @map("endpoint_name")
+  jsonTemplate Json   @map("json_template")
+
+  defaultCount Int       @map("default_count")
+  apiMethod    ApiMethod @map("api_method")
+
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  apiCalls ApiCall[]
+
+  @@unique([clerkUserId, endPointName])
+  @@map("ghost_apis")
+}
+
+model ApiKey {
+  id          String    @id @default(uuid())
+  clerkUserId String    @map("clerk_user_id")
+  keyName     String    @map("key_name")
+  apiKey      String    @unique @map("api_key")
+  isActive    Boolean   @default(true) @map("is_active")
+  lastUsedAt  DateTime? @map("last_used_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  // Relations
+  apiCalls ApiCall[]
+
+  @@map("api_keys")
+}
+
+model ApiCall {
+  id         String   @id @default(uuid())
+  ghostApiId String   @map("ghost_api_id")
+  apiKeyId   String?  @map("api_key_id")
+  ipAddress  String?  @map("ip_address")
+  calledAt   DateTime @default(now()) @map("called_at")
+
+  // Relations
+  ghostApi GhostApi @relation(fields: [ghostApiId], references: [id], onDelete: Cascade)
+  apiKey   ApiKey?  @relation(fields: [apiKeyId], references: [id])
+
+  @@map("api_calls")
+}
