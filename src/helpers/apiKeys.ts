@@ -5,6 +5,11 @@ const nanoid = customAlphabet(
   32
 );
 
+const nanoidShort = customAlphabet(
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  16
+);
+
 export function generateApiKey(env: "live" | "test" = "live"): string {
-  return `ak_${env}_${nanoid()}`;
+  return `ak_${env}_${nanoidShort()}`;
 }
