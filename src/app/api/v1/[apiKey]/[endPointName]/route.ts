@@ -62,6 +62,7 @@ export async function handler(
         ghostApiId: apiData.id,
         apiKeyId: apiKeyExist.id,
         ipAddress: req.headers.get("X-Forwarded-For"),
+        clerkUserId: userId,
       },
     });
     return Response.success(resData);

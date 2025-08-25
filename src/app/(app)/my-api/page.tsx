@@ -2,7 +2,7 @@ import SearchBar from "@/components/atoms/search-bar";
 
 import { Button } from "@/components/ui/button";
 
-import ApiSection from "@/feature/createApi/components/api-section";
+import ApiSection from "@/feature/myApi/components/api-section";
 import PageButtons from "@/feature/myApi/components/page-buttons";
 
 import { Plus } from "lucide-react";
@@ -24,7 +24,7 @@ export default async function Page({
     <div className="min-h-screen bg-background p-8 space-y-10">
       {/* header section  */}
       <div id="heading" className="space-y-2">
-        <h2 className="font-semibold text-2xl">My API's</h2>
+        <h2 className="font-semibold text-2xl">My API&apos;s</h2>
         <div>
           <div className="text-md text-foreground/50 flex justify-between">
             <span> Manage your existing mock APIs</span>

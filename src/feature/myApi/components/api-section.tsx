@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getAllApiData } from "@/feature/myApi/queries/getAllApiData";
 import clsx from "clsx";
+import { FolderOpen, Plus } from "lucide-react";
+import Link from "next/link";
 
 import { redirect } from "next/navigation";
 
@@ -77,6 +79,31 @@ export default async function ApiSection({
             </Card>
           );
         })}
+
+      {ghostApiData.filter((api) =>
+        api.endPointName.toLowerCase().includes(searchQuery.toLowerCase())
+      ).length === 0 && (
+        <Card>
+          <CardContent className="p-12 text-center flex flex-col items-center">
+            <FolderOpen className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <h3 className="font-semibold mb-2">No APIs found</h3>
+            <p className="text-muted-foreground mb-4">
+              {searchQuery
+                ? "No APIs match your search criteria."
+                : "You haven't created any APIs yet."}
+            </p>
+            <div>
+              <Link
+                href="/create-api"
+                className="bg-primary/90 hover:bg-primary/100  flex text-sm py-2 w-50 rounded-md justify-center items-center text-white"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Create Your First API
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }

@@ -32,7 +32,7 @@ export default function SideBar() {
       {/* Header */}
       <div className="flex  h-14 items-center px-6 mb-2">
         <div className="flex items-center ">
-          <img src={"/assets/darkTheme.png"} alt="ghostend logo" />
+          <img src={"/assets/ghostend.png"} alt="ghostend logo" />
         </div>
       </div>
 
