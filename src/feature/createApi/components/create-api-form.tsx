@@ -191,7 +191,7 @@ export default function CreateApiForm() {
               <div className="space-y-4">
                 <Textarea
                   className="min-h-[300px] font-mono text-sm"
-                  placeholder='{"name": "fullname", "email": "email", "age": "age"}'
+                  placeholder='{"name": "fullName", "email": "email", "age": "age"}'
                   value={jsonString}
                   onChange={(e) => handleJsonChange(e.target.value)}
                 />
