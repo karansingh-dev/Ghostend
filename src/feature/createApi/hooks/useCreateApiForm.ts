@@ -1,4 +1,4 @@
-import { ApiFormDataType, apiFormSchema } from "@/schemas/createApiSchema";
+import {  apiFormSchema } from "@/schemas/createApiSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useCreateApiStorevalue } from "./useCreateApiStore";
@@ -26,7 +26,7 @@ export const useCreateApiForm = () => {
     setValue,
     reset,
     formState: { errors },
-  } = useForm<ApiFormDataType>({
+  } = useForm({
     resolver: zodResolver(apiFormSchema),
     defaultValues: {
       defaultCount: 1,

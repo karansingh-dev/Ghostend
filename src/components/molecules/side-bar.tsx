@@ -28,11 +28,11 @@ export default function SideBar() {
     { key: "settings", name: "Settings", icon: Settings, to: "/settings" },
   ];
   return (
-    <div className="w-64 bg-background text-foreground min-h-screen border-r flex flex-col gap-2 shadow-md">
+    <div className="w-54 bg-background text-foreground min-h-screen border-r flex flex-col gap-2 shadow-md">
       {/* Header */}
       <div className="flex  h-14 items-center px-6 mb-2">
         <div className="flex items-center ">
-          <img src={"/assets/ghostend.png"} alt="ghostend logo" />
+          <img src={"/assets/darkTheme.png"} alt="ghostend logo" />
         </div>
       </div>
 

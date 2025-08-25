@@ -1,6 +1,7 @@
 import { DataMapper, ResolveValueInput, ResolveValueOutput } from "@/lib/faker";
 
 export function resolveValue(value: ResolveValueInput): ResolveValueOutput {
+  
   if (typeof value === "string") {
     if (value in DataMapper) {
       return DataMapper[value]();
