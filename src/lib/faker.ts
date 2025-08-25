@@ -87,6 +87,7 @@ export function getAvailableTypes() {
 }
 
 export type DataMapperType = keyof typeof DataMapper;
+
 export type DataMapperReturnTypes = ReturnType<
   (typeof DataMapper)[DataMapperType]
 >;

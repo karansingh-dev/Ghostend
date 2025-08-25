@@ -1,33 +1,46 @@
-import { prisma } from "@/lib/prisma";
-import { auth } from "@clerk/nextjs/server";
+import SearchBar from "@/components/atoms/search-bar";
 
-export default async function Page() {
-  const { userId } = await auth();
+import { Button } from "@/components/ui/button";
 
-  if (!userId) return null;
+import ApiSection from "@/feature/createApi/components/api-section";
+import PageButtons from "@/feature/myApi/components/page-buttons";
 
-  const userdata = await prisma.ghostApi.findMany({
-    where: {
-      clerkUserId: userId,
-    },
-  });
-  if (userdata) {
+import { Plus } from "lucide-react";
+import { redirect } from "next/navigation";
+
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string; page: string }>;
+}) {
+  const pageNumber = (await searchParams).page;
+
+  if (!pageNumber) {
+    // ensure consistent URL like /my-api?page=1
+    redirect("/my-api?page=1");
   }
 
-  const apikeys = await prisma.apiKey.findMany({
-    where: {
-      clerkUserId: userId,
-    },
-  });
-
   return (
-    <div className="min-h-screen p-8">
-      <div id="heading">
-        {JSON.stringify(userdata)}
-
-        <h1 className="text-4xl font-bold">Api key</h1>
-        {JSON.stringify(apikeys)}
+    <div className="min-h-screen bg-background p-8 space-y-10">
+      {/* header section  */}
+      <div id="heading" className="space-y-2">
+        <h2 className="font-semibold text-2xl">My API's</h2>
+        <div>
+          <div className="text-md text-foreground/50 flex justify-between">
+            <span> Manage your existing mock APIs</span>
+            <Button variant="default">
+              <Plus /> Create New Api
+            </Button>
+          </div>
+        </div>
+        <div className="mt-15 w-full flex justify-between ">
+          <SearchBar />
+          <PageButtons />
+        </div>
       </div>
+
+      {/* apis section  */}
+      <ApiSection searchParams={searchParams} />
     </div>
   );
 }

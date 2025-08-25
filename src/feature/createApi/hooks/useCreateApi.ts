@@ -1,16 +1,13 @@
-import { faker } from "@faker-js/faker";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
 import toast from "react-hot-toast";
-
-import { ApiFormDataType, apiFormSchema } from "@/schemas/createApiSchema";
-import { useCreateApiStore } from "@/store/create-api-store";
+import { ApiFormDataType } from "@/schemas/createApiSchema";
 import { createGhostApi } from "@/feature/createApi/mutations/createApi";
 import { useCreateApiStorevalue } from "./useCreateApiStore";
 import { useCreateApiForm } from "./useCreateApiForm";
+import { SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 export const useCreateApi = () => {
+  const router = useRouter();
   const {
     setIsAiGenerating,
     aiPrompt,
@@ -61,7 +58,7 @@ export const useCreateApi = () => {
     }
   };
 
-  const onSubmit = async (data: ApiFormDataType) => {
+  const onSubmit: SubmitHandler<ApiFormDataType> = async (data) => {
     if (!data.jsonTemplate || Object.keys(data.jsonTemplate).length === 0) {
       toast.error("Please provide a JSON template");
       return;
@@ -73,6 +70,7 @@ export const useCreateApi = () => {
       toast.success("API endpoint created successfully!");
       reset();
       setJsonString("");
+      router.push("/my-api");
     } catch (error) {
       toast.error("Failed to create API endpoint");
       console.error(error);
