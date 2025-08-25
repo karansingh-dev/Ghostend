@@ -5,6 +5,7 @@ import { useCreateApiStorevalue } from "./useCreateApiStore";
 import { useCreateApiForm } from "./useCreateApiForm";
 import { SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { ResolveValueInput } from "@/lib/faker";
 
 export const useCreateApi = () => {
   const router = useRouter();
@@ -44,11 +45,14 @@ export const useCreateApi = () => {
 
       const aiGeneratedData = jsonData.schema;
 
-      setValue("jsonTemplate", aiGeneratedData);
+      setValue(
+        "jsonTemplate",
+        aiGeneratedData as [key: string, ResolveValueInput]
+      );
 
       setJsonString(JSON.stringify(aiGeneratedData, null, 2));
       toast.success("AI generated JSON template!");
-      setTab("ai");
+      setTab("json");
 
       setAiPrompt("");
     } catch (error) {

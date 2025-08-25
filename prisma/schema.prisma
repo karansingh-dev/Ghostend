@@ -52,11 +52,12 @@ model ApiKey {
 }
 
 model ApiCall {
-  id         String   @id @default(uuid())
-  ghostApiId String   @map("ghost_api_id")
-  apiKeyId   String?  @map("api_key_id")
-  ipAddress  String?  @map("ip_address")
-  calledAt   DateTime @default(now()) @map("called_at")
+  id          String   @id @default(uuid())
+  ghostApiId  String   @map("ghost_api_id")
+  apiKeyId    String?  @map("api_key_id")
+  ipAddress   String?  @map("ip_address")
+  clerkUserId String?   @map("clerk_user_id")
+  calledAt    DateTime @default(now()) @map("called_at")
 
   // Relations
   ghostApi GhostApi @relation(fields: [ghostApiId], references: [id], onDelete: Cascade)
