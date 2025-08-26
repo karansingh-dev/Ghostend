@@ -1,6 +1,13 @@
 
 
 
-export default function Page(){
-    return <div>Documentation</div>
+export default function Page() {
+    return <div className="min-h-screen p-8">
+        <div>
+            Documentation
+        </div>
+        <div>
+            Coming soon !
+        </div>
+    </div>
 }
