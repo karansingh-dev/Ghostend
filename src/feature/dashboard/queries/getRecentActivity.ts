@@ -20,7 +20,7 @@ export default async function getRecentActivity() {
         },
       },
     },
-    take: 5,
+    take: 3,
     orderBy: {
       calledAt: "desc",
     },

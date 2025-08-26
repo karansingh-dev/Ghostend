@@ -21,7 +21,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { FileJson, Sparkles, Zap } from "lucide-react";
 import BasicLoader from "@/components/atoms/basic-loader";
 import { useEffect } from "react";
-import { useCreateApi } from "../hooks/useCreateApi";
+
 import toast from "react-hot-toast";
 import { useCreateApiStorevalue } from "../hooks/useCreateApiStore";
 import { useCreateApiForm } from "../hooks/useCreateApiForm";
@@ -51,8 +51,10 @@ export default function CreateApiForm() {
     loadExampleData,
     formatJson,
     clearJsonTemplate,
+    onSubmit,
+    generateAiJson
   } = useCreateApiForm();
-  const { onSubmit, generateAiJson } = useCreateApi();
+
 
   // Keep jsonString in sync
   useEffect(() => {

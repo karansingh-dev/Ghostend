@@ -68,7 +68,7 @@ export async function handler(
     return Response.success(resData);
   } catch (error) {
     console.log("failed to server api request", error);
-    throw error;
+    return Response.error(["failed to serve api request"]);
   }
 }
 
