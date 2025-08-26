@@ -1,21 +1,19 @@
+import { NextRequest } from "next/server";
 import { SchemaPresetType } from "@/feature/templates/constants/presets";
 import { generateData } from "@/helpers/dataGenerator";
 import { Response } from "@/helpers/response";
 import { ResolveValueInput } from "@/lib/faker";
-import { NextRequest } from "next/server";
 import { schemaPresets } from "@/feature/templates/constants/presets";
 
-type params = {
-  endPointName: SchemaPresetType;
-};
+type Params = { endPointName: SchemaPresetType };
 
 export async function GET(
-  req: NextRequest,
-  context: { params: Promise<params> }
+  _req: NextRequest,
+  ctx: RouteContext<"/api/v1/presets/[endPointName]">
 ) {
   try {
     const count = 50;
-    const { endPointName } = await context.params;
+    const { endPointName } = (await ctx.params) as Params;
 
     let resData;
 
