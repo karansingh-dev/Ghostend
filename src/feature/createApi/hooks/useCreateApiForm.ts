@@ -122,7 +122,6 @@ export const useCreateApiForm = () => {
       ];
 
       setValue("jsonTemplate", aiGeneratedData);
-      console.log(getValues("jsonTemplate"));
 
       setJsonString(JSON.stringify(aiGeneratedData, null, 2));
       toast.success("AI generated JSON template!");

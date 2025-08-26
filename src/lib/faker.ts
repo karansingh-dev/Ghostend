@@ -95,8 +95,9 @@ export type DataMapperReturnTypes = ReturnType<
 // Input type for resolveValue - can be a mapper key or a nested object
 export type ResolveValueInput =
   | DataMapperType
-  | { [key: string]: ResolveValueInput };
-
+  | { [key: string]: ResolveValueInput }
+  
+  
 // Return type for resolveValue - can be a primitive value or a nested object
 export type ResolveValueOutput =
   | DataMapperReturnTypes
