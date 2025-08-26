@@ -28,7 +28,7 @@ export default function Page() {
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {Object.entries(schemaPresets).map(([key]) => {
           const meta = templateMeta[key as keyof typeof schemaPresets];
-          const url = `https://ghostend.app/v1/api/presets/${key}`;
+          const url = `localhost:3000/api/v1/presets/${key}`;
           return (
             <TemplateCard
               key={key}
